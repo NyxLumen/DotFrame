@@ -13,6 +13,8 @@ const engine = new Engine(WIDTH, HEIGHT, CELL_SIZE);
 const output = document.getElementById("output");
 const statusLabel = document.querySelector(".label");
 const recDot = document.querySelector(".rec-dot");
+const toggleMain = document.getElementById("toggle-main");
+const webcam = document.getElementById("webcam");
 
 async function start() {
 	console.log("Requesting Camera...");
@@ -43,3 +45,7 @@ async function start() {
 }
 
 start();
+
+toggleMain.addEventListener("click", () => {
+	webcam.classList.toggle("hidden");
+});

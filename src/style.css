@@ -16,7 +16,7 @@ body {
 	margin: 0;
 	height: 100vh;
 	display: grid;
-	grid-template-rows: 100px 1fr 75px;
+	grid-template-rows: 100px 75px 1fr 75px;
 	align-items: center;
 	justify-content: center;
 	font-family: "JetBrains Mono", monospace;
@@ -30,11 +30,36 @@ body > h1 {
 	font-size: clamp(1.5rem, 10vw, 4rem);
 	text-align: center;
 	margin-top: 3rem;
+	user-select: none;
 }
 body > h1 > span {
 	color: var(--nothing-red);
 }
+.btns {
+	grid-row: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.menu-buttons {
+	font-family: "Ndot 57 Aligned", sans-serif;
+	font-size: 1rem;
+	font-weight: 600;
+	height: 35px;
+	width: 150px;
+	border: none;
+	color: var(--nothing-black);
+	background-color: var(--nothing-white);
+	border: none;
+	transition: all 0.3s;
+	text-align: center;
+}
+.menu-buttons:hover {
+	background-color: var(--nothing-red);
+	color: var(--nothing-white);
+}
 #feed {
+	grid-row: 3;
 	display: flex;
 	flex-wrap: wrap;
 	height: fit-content;
@@ -49,12 +74,15 @@ body > h1 > span {
 	transform: scaleX(-1);
 	transition: all 0.3s;
 }
+.hidden {
+	display: none;
+}
 
 #output {
 	position: relative;
 	z-index: 1;
 	font-size: 0.6vw;
-	line-height: 0.55vw;
+	line-height: 0.555vw;
 	letter-spacing: 0.23vw;
 	text-align: center;
 	white-space: pre;
@@ -154,7 +182,7 @@ body > h1 > span {
 	text-align: center;
 	justify-content: center;
 	align-items: center;
-	grid-row: 3;
+	grid-row: 4;
 	display: flex;
 	align-items: center;
 	gap: 12px;
