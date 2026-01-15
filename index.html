@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dot Frame</title>
+</head>
+<body style="background: black; color: white; margin: 0; overflow: hidden;">
+    <div id="app">
+        <div id="status" style="position:fixed; top:10px; left:10px; color:red; font-family: monospace;">INITIALIZING...</div>
+        
+        <pre id="output" style="font-family: monospace; white-space: pre; line-height: 8px; font-size: 8px;"></pre>
+        
+        <video id="webcam" autoplay playsinline style="position:fixed; bottom:10px; right:10px; width:160px; border:1px solid red;"></video>
+        <canvas id="buffer" style="display:none;"></canvas>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+</html>

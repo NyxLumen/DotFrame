@@ -1,0 +1,27 @@
+{
+	"name": "dotframe",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"test": "vitest",
+		"preview": "vite preview"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/NyxLumen/DotFrame.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/NyxLumen/DotFrame/issues"
+	},
+	"homepage": "https://github.com/NyxLumen/DotFrame#readme",
+	"devDependencies": {
+		"vite": "^7.3.1",
+		"vitest": "^4.0.17"
+	}
+}
