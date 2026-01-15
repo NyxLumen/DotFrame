@@ -31,6 +31,9 @@ body > h1 {
 	text-align: center;
 	margin-top: 3rem;
 }
+body > h1 > span {
+	color: var(--nothing-red);
+}
 #feed {
 	display: flex;
 	flex-wrap: wrap;
@@ -44,6 +47,7 @@ body > h1 {
 #webcam {
 	height: 33vw;
 	transform: scaleX(-1);
+	transition: all 0.3s;
 }
 
 #output {
@@ -51,13 +55,13 @@ body > h1 {
 	z-index: 1;
 	font-size: 0.6vw;
 	line-height: 0.55vw;
-	letter-spacing: 0.2vw;
-
+	letter-spacing: 0.23vw;
 	text-align: center;
 	white-space: pre;
 	transform: scaleX(-1);
 	color: var(--nothing-white);
 	text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+	transition: all 0.3s;
 }
 
 .viewfinder {
@@ -120,6 +124,10 @@ body > h1 {
 	background: var(--nothing-red);
 	border-radius: 50%;
 	animation: blink 1s infinite;
+}
+.label {
+	font-size: 1rem;
+	font-family: "Ndot 57 Aligned", sans-serif;
 }
 
 .metadata {
