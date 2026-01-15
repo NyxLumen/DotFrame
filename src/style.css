@@ -32,8 +32,8 @@ body > h1 {
 #output {
 	position: relative;
 	z-index: 1;
-	font-size: 0.7vw;
-	line-height: 0.7vw;
+	font-size: 0.6vw;
+	line-height: 0.6vw;
 	letter-spacing: 0.2vw;
 
 	text-align: center;
@@ -119,4 +119,32 @@ body > h1 {
 	50% {
 		opacity: 0;
 	}
+}
+
+.footer {
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	grid-row: 3;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-family: "Ndot 57 Aligned", sans-serif;
+	font-weight: 400;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.5);
+	z-index: 10;
+	transition: all 0.3s ease;
+}
+
+.footer:hover {
+	color: var(--nothing-red);
+	transform: translateY(-3px);
+	filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+.footer svg {
+	opacity: 0.8;
 }
