@@ -3,8 +3,11 @@ export class Engine {
 		this.width = width;
 		this.height = height;
 		this.cellSize = cellSize;
-		//this.symbols = [" ", "·", "°", "o", "O", "0", "@"];
-		this.symbols = [" ", "·", "°", "o", "O", "@"];
+		//this.symbols = [" ", "·", "°", "o", "O", "@"];
+		this.symbols = [" ", "·", "°", "o", "O", "0", "@"];
+		//this.symbols = [" ", "·", ":", "o", "O", "8", "@"];
+		///this.symbols = [" ", ".", ":", "-", "=", "+", "*", "#", "%", "@"];
+		//this.symbols = [" ", "_", "/", "|", "X", "M", "█"];
 	}
 
 	calculateLuminance(r, g, b) {

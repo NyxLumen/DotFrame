@@ -4,10 +4,11 @@ import { Engine } from "./src/Engine";
 
 console.log("dot.frame: System Booting...");
 
-const WIDTH = 160;
-const HEIGHT = 120;
+const WIDTH = 320;
+const HEIGHT = 240;
+const CELL_SIZE = 4;
 const capture = new Capture(WIDTH, HEIGHT);
-const engine = new Engine(WIDTH, HEIGHT, 4);
+const engine = new Engine(WIDTH, HEIGHT, CELL_SIZE);
 
 const output = document.getElementById("output");
 const statusLabel = document.querySelector(".label");
