@@ -3,7 +3,8 @@ export class Engine {
 		this.width = width;
 		this.height = height;
 		this.cellSize = cellSize;
-		this.symbols = [" ", "·", "°", "o", "O", "0", "@"];
+		//this.symbols = [" ", "·", "°", "o", "O", "0", "@"];
+		this.symbols = [" ", "·", "°", "o", "O", "@"];
 	}
 
 	calculateLuminance(r, g, b) {

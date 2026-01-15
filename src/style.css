@@ -1,12 +1,110 @@
-* {
-	box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap");
+
+:root {
+	--nothing-red: #ff0000;
+	--nothing-white: #ffffff;
+	--nothing-black: #000000;
 }
+
 body {
-	width: 100%;
+	background-color: var(--nothing-black);
+	color: var(--nothing-white);
+	margin: 0;
 	height: 100vh;
-	height: 100dvh;
-	display: grid;
-	grid-template-rows: 100px, 1fr, 100px;
-	justify-content: center;
+	display: flex;
 	align-items: center;
+	justify-content: center;
+	font-family: "JetBrains Mono", monospace;
+	overflow: hidden;
+}
+
+#output {
+	position: relative;
+	z-index: 1;
+	font-size: 8px;
+	line-height: 8px;
+	letter-spacing: 2px;
+	white-space: pre;
+	text-align: center;
+	transform: scaleX(-1);
+	filter: contrast(1.5) brightness(1.2);
+	color: var(--nothing-white);
+}
+
+.viewfinder {
+	position: fixed;
+	inset: 40px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	pointer-events: none;
+	z-index: 10;
+}
+
+.corner {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border: 2px solid var(--nothing-white);
+}
+
+.top-left {
+	top: -2px;
+	left: -2px;
+	border-right: 0;
+	border-bottom: 0;
+}
+.top-right {
+	top: -2px;
+	right: -2px;
+	border-left: 0;
+	border-bottom: 0;
+}
+.bottom-left {
+	bottom: -2px;
+	left: -2px;
+	border-right: 0;
+	border-top: 0;
+}
+.bottom-right {
+	bottom: -2px;
+	right: -2px;
+	border-left: 0;
+	border-top: 0;
+}
+
+.status-bar {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 12px;
+}
+
+.rec-dot {
+	width: 8px;
+	height: 8px;
+	background: var(--nothing-red);
+	border-radius: 50%;
+	animation: blink 1s infinite;
+}
+
+.metadata {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	display: flex;
+	gap: 20px;
+	font-size: 10px;
+	opacity: 0.5;
+}
+
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
 }
