@@ -4,7 +4,7 @@
 
 :root {
 	--nothing-red: #d71921;
-	--nothing-white: #ecffef;
+	--nothing-white: #fff;
 	--nothing-black: #000;
 }
 
@@ -80,7 +80,6 @@ body > h1 > span {
 	filter: contrast(1.2) brightness(1.1);
 	max-width: 640px;
 	object-fit: contain;
-	transform: scaleX(-1);
 	width: 100%;
 	z-index: 1;
 }
@@ -165,11 +164,17 @@ body > h1 > span {
 }
 
 .rec-dot {
-	animation: blink 1s infinite;
 	background: var(--nothing-red);
 	border-radius: 50%;
 	height: 8px;
+	opacity: 0.2;
+	transition: opacity 0.3s;
 	width: 8px;
+}
+
+.rec-dot.active {
+	animation: blink 1s infinite;
+	opacity: 1;
 }
 
 .label {
@@ -194,7 +199,7 @@ body > h1 > span {
 	}
 
 	50% {
-		opacity: 0;
+		opacity: 0.3;
 	}
 }
 

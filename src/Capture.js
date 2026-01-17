@@ -8,6 +8,9 @@ export class Capture {
 
 		this.buffer.width = this.width;
 		this.buffer.height = this.height;
+
+		this.ctx.translate(this.width, 0);
+		this.ctx.scale(-1, 1);
 	}
 
 	async init() {
