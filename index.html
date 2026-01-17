@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
+    
     <h1>Dot Frame</h1>
+    
     <div class="btns">
         <button id="toggle-main" class="menu-buttons">Toggle Main</button>
     </div>
+
     <div id="app">
         <div class="viewfinder">
             <div class="corner top-left"></div>
@@ -31,12 +34,12 @@
             </div>
         </div>
         <div id="feed">
-            <pre id="output"></pre>
-            <video id="webcam" autoplay playsinline></video>
+            <canvas id="ascii-canvas"></canvas> 
+            <video id="webcam" autoplay playsinline class="hidden"></video>
             <canvas id="buffer" style="display:none;"></canvas>
         </div>
-
     </div>
+
     <a href="https://github.com/NyxLumen" target="_blank" class="footer">
 		<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
 			<path

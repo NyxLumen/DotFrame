@@ -1,14 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;700&display=swap");
 @import url("https://db.onlinewebfonts.com/c/d7a74ed36ff0603a3e41b6da32c47f03?family=Ndot+57+Aligned");
+@import url("https://db.onlinewebfonts.com/c/5f21b8d13dad527377311ec2d5388bdf?family=Ndot+55");
+
+:root {
+	--nothing-red: #d71921;
+	--nothing-white: #ecffef;
+	--nothing-black: #000;
+}
 
 /** {
-	border: red 1px solid;
+	border: solid 1px var(--nothing-red);
 }*/
-:root {
-	--nothing-red: #ff0000;
-	--nothing-white: #ffffff;
-	--nothing-black: #000000;
-}
 
 body {
 	background-color: var(--nothing-black);
@@ -16,7 +18,7 @@ body {
 	margin: 0;
 	height: 100vh;
 	display: grid;
-	grid-template-rows: 100px 75px 1fr 75px;
+	grid-template-rows: 150px 50px 1fr 75px;
 	align-items: center;
 	justify-content: center;
 	font-family: "JetBrains Mono", monospace;
@@ -25,7 +27,7 @@ body {
 
 body > h1 {
 	grid-row: 1;
-	font-family: "Ndot 57 Aligned", sans-serif;
+	font-family: "Ndot 55", sans-serif;
 	font-weight: 400;
 	font-size: clamp(1.5rem, 10vw, 4rem);
 	text-align: center;
@@ -42,7 +44,7 @@ body > h1 > span {
 	align-items: center;
 }
 .menu-buttons {
-	font-family: "Ndot 57 Aligned", sans-serif;
+	font-family: "Ndot 55", sans-serif;
 	font-size: 1rem;
 	font-weight: 600;
 	height: 35px;
@@ -69,8 +71,18 @@ body > h1 > span {
 	gap: 50px;
 }
 
+#ascii-canvas {
+	width: 100%;
+	max-width: 640px;
+	object-fit: contain;
+	filter: contrast(1.2) brightness(1.1);
+	transform: scaleX(-1);
+	z-index: 1;
+}
+
 #webcam {
-	height: 33vw;
+	max-width: 640px;
+	height: auto;
 	transform: scaleX(-1);
 	transition: all 0.3s;
 }
@@ -95,7 +107,7 @@ body > h1 > span {
 .viewfinder {
 	position: fixed;
 	inset: 25px;
-	margin-top: 75px;
+	margin-top: 100px;
 	margin-bottom: 50px;
 	margin-left: 1rem;
 	margin-right: 1rem;
@@ -179,27 +191,28 @@ body > h1 > span {
 }
 
 .footer {
+	place-self: center;
 	text-align: center;
-	justify-content: center;
-	align-items: center;
 	grid-row: 4;
 	display: flex;
+	justify-content: center;
 	align-items: center;
 	gap: 12px;
-	font-family: "Ndot 57 Aligned", sans-serif;
-	font-weight: 400;
+	font-family: "Ndot 55", sans-serif;
+	font-weight: 300;
 	letter-spacing: 2px;
 	text-transform: uppercase;
 	text-decoration: none;
 	color: rgba(255, 255, 255, 0.5);
 	z-index: 10;
 	transition: all 0.3s ease;
+	will-change: transform, color;
 }
 
 .footer:hover {
 	color: var(--nothing-red);
 	transform: translateY(-3px);
-	filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+	filter: drop-shadow(0 0 8px rgba(255, 00, 00, 0.4));
 }
 
 .footer svg {
