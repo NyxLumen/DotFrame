@@ -15,6 +15,8 @@ const ctx = canvas.getContext("2d", { alpha: false });
 const statusLabel = document.querySelector(".label");
 const toggleMain = document.getElementById("toggle-main");
 const webcam = document.getElementById("webcam");
+const snap = document.getElementById("snap-btn");
+const record = document.getElementById("record-btn");
 
 let engine = null;
 
