@@ -139,20 +139,18 @@ function startRecording() {
 
 	mediaRecorder = new MediaRecorder(stream, {
 		mimeType: mimeType,
-		videoBitsPerSecond: 2500000, // 2.5 Mbps (Crisp quality)
+		videoBitsPerSecond: 2500000,
 	});
 
-	// 3. Handle Data
 	mediaRecorder.ondataavailable = (event) => {
 		if (event.data.size > 0) {
 			recordedChunks.push(event.data);
 		}
 	};
 
-	// 4. Handle Stop (Save file)
 	mediaRecorder.onstop = () => {
 		const blob = new Blob(recordedChunks, { type: "video/webm" });
-		recordedChunks = []; // Reset chunks
+		recordedChunks = [];
 
 		const url = URL.createObjectURL(blob);
 		const a = document.createElement("a");
@@ -168,16 +166,16 @@ function startRecording() {
 		console.log("dot.frame: Recording saved.");
 	};
 
-	// 5. Start
 	mediaRecorder.start();
 	isRecording = true;
 
-	// UI Updates
 	recordBtn.innerText = "STOP";
 	recordBtn.style.backgroundColor = "var(--nothing-red)";
 	recordBtn.style.color = "var(--nothing-white)";
-	if (recDot) recDot.style.opacity = 1; // Force visibility
-
+	if (recDot) {
+		recDot.style.opacity = 1;
+		recDot.style.animation = "blink 2.5s infinite";
+	}
 	console.log("dot.frame: Recording started...");
 }
 
@@ -185,9 +183,11 @@ function stopRecording() {
 	mediaRecorder.stop();
 	isRecording = false;
 
-	// UI Updates
 	recordBtn.innerText = "REC";
 	recordBtn.style.backgroundColor = "var(--nothing-white)";
 	recordBtn.style.color = "var(--nothing-black)";
-	if (recDot) recDot.style.opacity = ""; // Return to CSS animation
+	if (recDot) {
+		recDot.style.opacity = "";
+		recDot.style.animation = "";
+	}
 }
