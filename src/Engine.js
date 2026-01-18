@@ -7,19 +7,16 @@ export class Engine {
 
 		this.modes = {
 			dots: [" ", "·", "°", "o", "O", "0", "@"],
-			crt: ["⠀", "░", "▒", "▓", "█"],
+			blocks: ["⠀", "░", "▒", "▓", "█"],
 		};
 
 		this.symbols = this.modes.dots;
 		this.isBlockMode = false;
 	}
-	getBlockMode() {
-		return this.isBlockMode ? "CRT" : "DOTS";
-	}
 	toggleMode() {
 		this.isBlockMode = !this.isBlockMode;
-		this.symbols = this.isBlockMode ? this.modes.crt : this.modes.dots;
-		return this.isBlockMode ? "CRT" : "DOTS";
+		this.symbols = this.isBlockMode ? this.modes.blocks : this.modes.dots;
+		return this.isBlockMode ? "BLOCKS" : "DOTS";
 	}
 
 	calculateLuminance(r, g, b) {

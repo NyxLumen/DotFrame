@@ -4,9 +4,9 @@ import { Engine } from "./src/Engine";
 
 console.log("dot.frame: System Booting...");
 
-const CAPTURE_WIDTH = 640;
-const CAPTURE_HEIGHT = 480;
-const BASE_CELL_WIDTH = 6;
+const CAPTURE_WIDTH = 960;
+const CAPTURE_HEIGHT = 720;
+const BASE_CELL_WIDTH = 7;
 const TITLE = "DOT FRAME";
 
 const canvas = document.getElementById("ascii-canvas");
@@ -76,12 +76,9 @@ async function start() {
 		const finalHeight = rows * charHeight;
 
 		const dpr = window.devicePixelRatio || 1;
+
 		canvas.width = finalWidth * dpr;
 		canvas.height = finalHeight * dpr;
-
-		canvas.style.width = `${finalWidth}px`;
-		canvas.style.height = `${finalHeight}px`;
-
 		ctx.scale(dpr, dpr);
 
 		ctx.font = `bold ${fontSize}px "JetBrains Mono", monospace`;
