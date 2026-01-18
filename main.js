@@ -15,6 +15,7 @@ const ctx = canvas.getContext("2d", { alpha: false });
 const statusLabel = document.querySelector(".label");
 const toggleMain = document.getElementById("toggle-main");
 const webcam = document.getElementById("webcam");
+const modeBtn = document.getElementById("mode-btn");
 const snapBtn = document.getElementById("snap-btn");
 const recordBtn = document.getElementById("rec-btn");
 const recDot = document.querySelector(".rec-dot");
@@ -85,7 +86,9 @@ async function start() {
 
 				ctx.fillStyle = "#FFF";
 				rows.forEach((rowString, rowIndex) => {
-					ctx.fillText(rowString, 0, rowIndex * charHeight);
+					for (let i = 0; i < rowString.length; i++) {
+						ctx.fillText(rowString[i], i * charWidth, rowIndex * charHeight);
+					}
 				});
 			}
 			requestAnimationFrame(render);
@@ -100,8 +103,20 @@ start();
 
 toggleMain.addEventListener("click", () => {
 	webcam.classList.toggle("hidden");
+	if (webcam.classList.contains("hidden")) {
+		toggleMain.innerText = "Main Off";
+	} else {
+		toggleMain.innerText = "Main On";
+	}
 });
 
+modeBtn.addEventListener("click", () => {
+	const label = engine.toggleMode();
+
+	modeBtn.innerText = label;
+});
+
+//snap
 snapBtn.addEventListener("click", () => {
 	setTimeout(
 		() => (canvas.style.filter = "contrast(1.2) brightness(1.1)"),
@@ -118,6 +133,7 @@ snapBtn.addEventListener("click", () => {
 	console.log("dot.frame: Snapshot captured.");
 });
 
+//rec
 let mediaRecorder;
 let recordedChunks = [];
 let isRecording = false;
