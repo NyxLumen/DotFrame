@@ -15,10 +15,22 @@ export class Capture {
 
 	async init() {
 		try {
-			const stream = await navigator.mediaDevices.getUserMedia({
-				video: { width: this.width, height: this.height },
+			const isMobile =
+				/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+					navigator.userAgent,
+				);
+
+			const constraints = {
+				video: {
+					width: { ideal: this.width },
+					height: { ideal: this.height },
+					aspectRatio: { ideal: this.width / this.height },
+					facingMode: isMobile ? "user" : "user", // front camera
+				},
 				audio: false,
-			});
+			};
+
+			const stream = await navigator.mediaDevices.getUserMedia(constraints);
 			this.video.srcObject = stream;
 			return new Promise((resolve) => {
 				this.video.onloadedmetadata = () => resolve(true);
@@ -30,7 +42,23 @@ export class Capture {
 	}
 
 	getFrameData() {
-		this.ctx.drawImage(this.video, 0, 0, this.width, this.height);
+		const videoAspect = this.video.videoWidth / this.video.videoHeight;
+		const bufferAspect = this.width / this.height;
+
+		let drawWidth = this.width;
+		let drawHeight = this.height;
+		let offsetX = 0;
+		let offsetY = 0;
+
+		if (videoAspect > bufferAspect) {
+			drawWidth = this.height * videoAspect;
+			offsetX = -(drawWidth - this.width) / 2;
+		} else {
+			drawHeight = this.width / videoAspect;
+			offsetY = -(drawHeight - this.height) / 2;
+		}
+
+		this.ctx.drawImage(this.video, offsetX, offsetY, drawWidth, drawHeight);
 		return this.ctx.getImageData(0, 0, this.width, this.height).data;
 	}
 }
