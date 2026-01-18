@@ -6,13 +6,13 @@ console.log("dot.frame: System Booting...");
 
 const CAPTURE_WIDTH = 640;
 const CAPTURE_HEIGHT = 480;
-
 const BASE_CELL_WIDTH = 6;
+const TITLE = "DOT FRAME";
 
-const capture = new Capture(CAPTURE_WIDTH, CAPTURE_HEIGHT);
 const canvas = document.getElementById("ascii-canvas");
 const ctx = canvas.getContext("2d", { alpha: false });
 const statusLabel = document.querySelector(".label");
+
 const toggleMain = document.getElementById("toggle-main");
 const webcam = document.getElementById("webcam");
 const modeBtn = document.getElementById("mode-btn");
@@ -20,10 +20,24 @@ const snapBtn = document.getElementById("snap-btn");
 const recordBtn = document.getElementById("rec-btn");
 const recDot = document.querySelector(".rec-dot");
 
+const bootText = document.getElementById("boot-text");
+const bootOverlay = document.getElementById("boot-overlay");
+const cursor = document.getElementById("cursor");
+const app = document.getElementById("app");
+
+const capture = new Capture(CAPTURE_WIDTH, CAPTURE_HEIGHT);
 let engine = null;
 
 async function start() {
-	const ready = await capture.init();
+	app.style.opacity = "0";
+
+	const cameraInitPromise = (async () => {
+		await document.fonts.ready;
+		return await capture.init();
+	})();
+
+	await typeWriter(TITLE);
+	const ready = await cameraInitPromise;
 
 	if (ready) {
 		if (statusLabel) {
@@ -45,9 +59,7 @@ async function start() {
 		const sampleHeight = sampleWidth / fontRatio;
 
 		console.log(
-			`Grid Logic: Char ${charWidth.toFixed(
-				2,
-			)}x${charHeight} | Sample ${sampleWidth}x${sampleHeight.toFixed(2)}`,
+			`Grid Logic: Char ${charWidth.toFixed(2)}x${charHeight} | Sample ${sampleWidth}x${sampleHeight.toFixed(2)}`,
 		);
 
 		engine = new Engine(
@@ -93,10 +105,40 @@ async function start() {
 			}
 			requestAnimationFrame(render);
 		}
+
 		render();
+		cursor.style.display = "none";
+		bootText.style.color = "#d71921";
+
+		setTimeout(() => {
+			bootOverlay.style.transition = "opacity 0.5s ease-out";
+			bootOverlay.style.opacity = "0";
+
+			app.style.transition = "opacity 1s ease-in";
+			app.style.opacity = "1";
+
+			setTimeout(() => bootOverlay.remove(), 500);
+		}, 400);
 	} else {
 		if (statusLabel) statusLabel.innerText = "ERR: CAMERA_DENIED";
 	}
+}
+
+function typeWriter(text) {
+	return new Promise((resolve) => {
+		let i = 0;
+		function type() {
+			if (i < text.length) {
+				bootText.innerText += text.charAt(i);
+				i++;
+				const speed = Math.floor(Math.random() * 100) + 75;
+				setTimeout(type, speed);
+			} else {
+				resolve();
+			}
+		}
+		type();
+	});
 }
 
 start();
@@ -112,11 +154,10 @@ toggleMain.addEventListener("click", () => {
 
 modeBtn.addEventListener("click", () => {
 	const label = engine.toggleMode();
-
 	modeBtn.innerText = label;
 });
 
-//snap
+// Snap
 snapBtn.addEventListener("click", () => {
 	setTimeout(
 		() => (canvas.style.filter = "contrast(1.2) brightness(1.1)"),
@@ -133,7 +174,7 @@ snapBtn.addEventListener("click", () => {
 	console.log("dot.frame: Snapshot captured.");
 });
 
-//rec
+// Rec
 let mediaRecorder;
 let recordedChunks = [];
 let isRecording = false;

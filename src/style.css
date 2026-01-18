@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;700&display=swap");
-@import url("https://db.onlinewebfonts.com/c/d7a74ed36ff0603a3e41b6da32c47f03?family=Ndot+57+Aligned");
 @import url("https://db.onlinewebfonts.com/c/5f21b8d13dad527377311ec2d5388bdf?family=Ndot+55");
 
 :root {
@@ -7,10 +6,6 @@
 	--nothing-white: #fff;
 	--nothing-black: #000;
 }
-
-/** {
-	border: solid 1px var(--nothing-red);
-} */
 
 body {
 	align-items: center;
@@ -25,18 +20,23 @@ body {
 	overflow: hidden;
 }
 
-body > h1 {
+h1 {
 	font-family: "Ndot 55", sans-serif;
 	font-size: clamp(1.5rem, 10vw, 4rem);
-	font-weight: 400;
+	font-weight: bold;
 	grid-row: 1;
+	letter-spacing: -2px;
 	margin-top: 3rem;
 	text-align: center;
 	user-select: none;
 }
 
-body > h1 > span {
+h1 > span {
 	color: var(--nothing-red);
+}
+
+.hidden {
+	display: none;
 }
 
 .btns {
@@ -51,6 +51,7 @@ body > h1 > span {
 	background-color: var(--nothing-white);
 	border: none;
 	color: var(--nothing-black);
+	cursor: pointer;
 	font-family: "Ndot 55", sans-serif;
 	font-size: 1rem;
 	font-weight: 600;
@@ -63,6 +64,34 @@ body > h1 > span {
 .menu-buttons:hover {
 	background-color: var(--nothing-red);
 	color: var(--nothing-white);
+}
+
+.footer {
+	align-items: center;
+	color: rgb(255 255 255 / 50%);
+	display: flex;
+	font-family: "Ndot 55", sans-serif;
+	font-weight: 300;
+	gap: 12px;
+	grid-row: 4;
+	justify-content: center;
+	letter-spacing: 2px;
+	place-self: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 0.3s ease;
+	will-change: transform, color;
+	z-index: 10;
+}
+
+.footer:hover {
+	color: var(--nothing-red);
+	filter: drop-shadow(0 0 8px rgb(255 0 0 / 40%));
+	transform: translateY(-3px);
+}
+
+.footer svg {
+	opacity: 0.8;
 }
 
 #feed {
@@ -89,10 +118,6 @@ body > h1 > span {
 	max-width: 640px;
 	transform: scaleX(-1);
 	transition: all 0.3s;
-}
-
-.hidden {
-	display: none;
 }
 
 #output {
@@ -163,6 +188,11 @@ body > h1 > span {
 	top: 20px;
 }
 
+.label {
+	font-family: "Ndot 55", sans-serif;
+	font-size: 1rem;
+}
+
 .rec-dot {
 	background: var(--nothing-red);
 	border-radius: 50%;
@@ -177,11 +207,6 @@ body > h1 > span {
 	opacity: 1;
 }
 
-.label {
-	font-family: "Ndot 57 Aligned", sans-serif;
-	font-size: 1rem;
-}
-
 .metadata {
 	bottom: 20px;
 	display: flex;
@@ -192,6 +217,33 @@ body > h1 > span {
 	right: 20px;
 }
 
+#boot-overlay {
+	align-items: center;
+	background-color: #000;
+	display: flex;
+	inset: 0;
+	justify-content: center;
+	pointer-events: none;
+	position: fixed;
+	z-index: 9999;
+}
+
+.boot-terminal {
+	color: #fff;
+	font-family: "Ndot 55", monospace;
+	font-size: 4rem;
+	font-weight: bold;
+	letter-spacing: -2px;
+	text-transform: uppercase;
+}
+
+#cursor {
+	animation: blink 0.8s step-end infinite;
+	color: var(--nothing-red);
+	font-family: "Ndot 55", monospace;
+	margin-left: 5px;
+}
+
 @keyframes blink {
 	0%,
 	100% {
@@ -199,35 +251,6 @@ body > h1 > span {
 	}
 
 	50% {
-		opacity: 0.3;
+		opacity: 0;
 	}
-}
-
-.footer {
-	align-items: center;
-	color: rgb(255 255 255 / 50%);
-	display: flex;
-	font-family: "Ndot 55", sans-serif;
-	font-weight: 300;
-	gap: 12px;
-	grid-row: 4;
-	justify-content: center;
-	letter-spacing: 2px;
-	place-self: center;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-	transition: all 0.3s ease;
-	will-change: transform, color;
-	z-index: 10;
-}
-
-.footer:hover {
-	color: var(--nothing-red);
-	filter: drop-shadow(0 0 8px rgb(255 00 00 / 40%));
-	transform: translateY(-3px);
-}
-
-.footer svg {
-	opacity: 0.8;
 }
